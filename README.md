@@ -11,7 +11,7 @@
   // Elementwise add
   Tensor2D C = A + B;
 	
-  // Elementwise add
+  // Elementwise multiply
   Tensor2D D = C * 2;
 	
   // Matrix multiply
