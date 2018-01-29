@@ -6,7 +6,7 @@
   Tensor2D A = Tensor2D(2,3, data_a);
   
   // Copy matrix
-  Tensor2D B = A.copy()
+  Tensor2D B = A.copy();
   
   // Elementwise add
   Tensor2D C = A + B;
