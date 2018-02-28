@@ -34,5 +34,17 @@
   14 32
   32 77
   
+  // Read element at postion (0,0)
+  float a = A(0,0); // 5
+  
+  // Write element at postion (0,0)
+  B(0,0) = 10;
+  
+  10 4
+  2 5
+  3 6
+ 
+  
+  
   
 ```
