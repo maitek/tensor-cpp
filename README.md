@@ -5,15 +5,34 @@
   float data_a[] = {1,2,3,4,5,6};
   Tensor2D A = Tensor2D(2,3, data_a);
   
-  // Copy matrix
-  Tensor2D B = A.copy();
+  1 2 3
+  4 5 6
+ 
+  // Transpose matrix
+  Tensor2D B = A.transpose();
+  
+  1 4
+  2 5
+  3 6
   
   // Elementwise add
-  Tensor2D C = A + B;
+  Tensor2D C = A + A;
+  
+  2 4 6
+  8 10 12
 	
   // Elementwise multiply
-  Tensor2D D = C * 2;
+  Tensor2D D = B * B;
+  
+  1 16
+  4 25
+  9 36
 	
   // Matrix multiply
   Tensor2D F = Tensor2D::matmul(A,B);
+  
+  14 32
+  32 77
+  
+  
 ```
