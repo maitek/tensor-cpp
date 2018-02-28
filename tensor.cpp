@@ -11,7 +11,8 @@ class Tensor2D {
   	Tensor2D copy();
   	unsigned int cols();
   	unsigned int rows();
-  	Tensor2D& transpose();
+  	float* data();
+  	Tensor2D transpose();
   	std::string toString();
 
   	// Static methods
@@ -26,7 +27,7 @@ class Tensor2D {
   	Tensor2D operator*(const float c);
   	//Tensor2D operator/(const Tensor2D &other); 
   	//Tensor2D operator/(const float c);
-  	float operator[](unsigned int index);
+  	float& operator[](unsigned int index);
   	float& operator()(unsigned int x, unsigned int y) const;
 
   private:
@@ -58,6 +59,10 @@ unsigned int Tensor2D::cols(){
 	return m_cols;
 }
 
+float* Tensor2D::data(){
+	return m_data;
+}
+
 void Tensor2D::checkInBounds(const Tensor2D &A, unsigned int x, unsigned int y){
 	if(x >= A.m_rows || y >= A.m_cols)
 	{
@@ -77,7 +82,8 @@ void Tensor2D::checkEqualSize(const Tensor2D &A, const Tensor2D &B){
 void Tensor2D::checkMatMulPossible(const Tensor2D &A, const Tensor2D &B){
 	if(A.m_cols != B.m_rows)
 	{
-		std::cout << "MatMult size error: A.cols() != B.rows()" << std::endl;
+		std::cout << "MatMult size error: A.cols() = " << A.m_cols
+		<< " != B.rows() = "<< B.m_rows << " " << std::endl;
 		throw 0;
 	}
 }
@@ -87,9 +93,15 @@ Tensor2D Tensor2D::copy(){
 	return copy;
 }
 
-Tensor2D& Tensor2D::transpose(){
-	// TODO
-	return *this;
+Tensor2D Tensor2D::transpose(){
+
+	Tensor2D transposed = Tensor2D(m_cols,m_rows);
+	//swap data for rows and columns
+	for(int i = 0; i < m_cols*m_rows; i++){
+		int j = (i % m_cols)*m_rows + i/m_cols;
+		transposed[j] = m_data[i];
+	}	
+	return transposed;
 }
 
 /*
@@ -116,7 +128,7 @@ Tensor2D Tensor2D::matmul(const Tensor2D &A, const Tensor2D &B){
 /*
 	Operators
 */
-float Tensor2D::operator[](unsigned int index){
+float& Tensor2D::operator[](unsigned int index){
 	return m_data[index];
 }
 
@@ -195,8 +207,12 @@ int main(){
 	Tensor2D A = Tensor2D(2,3, data_a);
 	std::cout << "A:" << std::endl << A.toString() << std::endl;
 
-	float data_b[] = {1,2,3,4,5,6};
-	Tensor2D B = Tensor2D(3,2, data_b);
+	//float data_b[] = {1,2,3,4,5,6};
+	//Tensor2D B = Tensor2D(3,2, data_b);
+	Tensor2D B = A.transpose();
+
+	//std::cout << "A:" << std::endl << A.toString() << std::endl;
+	//Tensor2D B = ;
 	std::cout << "B:" << std::endl << B.toString() << std::endl;
 
 	Tensor2D C = A + A;
