@@ -17,7 +17,7 @@ class Tensor2D {
 
   	// Static methods
   	static Tensor2D matmul(const Tensor2D &A, const Tensor2D &B);
-
+  	
   	// Operators
   	Tensor2D operator+(const Tensor2D &other);
   	Tensor2D operator+(const float c);
@@ -25,8 +25,7 @@ class Tensor2D {
   	Tensor2D operator-(const float c);
   	Tensor2D operator*(const Tensor2D &other);
   	Tensor2D operator*(const float c);
-  	//Tensor2D operator/(const Tensor2D &other); 
-  	//Tensor2D operator/(const float c);
+
   	float& operator[](unsigned int index);
   	float& operator()(unsigned int x, unsigned int y) const;
 
