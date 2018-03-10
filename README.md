@@ -1,6 +1,8 @@
 ## Numpy-like C++ Tensor Class for Matrix Algebra
 
 ```
+  #include "tensor.hpp"
+  
   // Initilize 2 x 3 matrix
   float data_a[] = {1,2,3,4,5,6};
   Tensor A = Tensor(2,3, data_a);
