@@ -35,7 +35,7 @@
   32 77
   
   // Read element at postion (0,0)
-  float a = A(0,0); // 5
+  float a = A(0,0); // 1
   
   // Write element at postion (0,0)
   B(0,0) = 10;
